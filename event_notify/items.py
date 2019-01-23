@@ -1,14 +1,9 @@
-# -*- coding: utf-8 -*-
-
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://doc.scrapy.org/en/latest/topics/items.html
-
 import scrapy
 
 
-class EventNotifyItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class EventItem(scrapy.Item):
+    title = scrapy.Field()
+    url = scrapy.Field()
+    schedule = scrapy.Field()
+    plices = scrapy.Field()
+    place = scrapy.Field()

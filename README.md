@@ -4,6 +4,11 @@
 2. check update
 3. tweet
 
+## setup
+
+if you use chromedriver and it's not installed
+`brew cask install chromedriver`
+
 ## Debugging
 
 if using VSCode, update launch.json's configurations to include the "Scrapy" configuration as seen below:

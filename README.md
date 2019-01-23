@@ -1,10 +1,14 @@
 # flow
-1. scrape web site
-2. tweet
 
-# Debugging
+1. scrape web site
+2. check update
+3. tweet
+
+## Debugging
+
 if using VSCode, update launch.json's configurations to include the "Scrapy" configuration as seen below:
-```
+
+```json
 {
    "version": "0.2.0",
     "configurations": [
@@ -20,4 +24,13 @@ if using VSCode, update launch.json's configurations to include the "Scrapy" con
         }
     ]
 }
+```
+
+## environ variable
+
+pipenv load .env
+
+```.env
+cp example.env .env
+vi .env
 ```

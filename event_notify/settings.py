@@ -70,6 +70,7 @@ DOWNLOADER_MIDDLEWARES = {"scrapy_selenium.SeleniumMiddleware": 800}
 ITEM_PIPELINES = {
     "event_notify.pipelines.ValidationPipeline": 300,
     "event_notify.pipelines.RedisPipeline": 500,
+    "event_notify.pipelines.TweetPipeline": 700,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

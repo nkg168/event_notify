@@ -67,9 +67,10 @@ DOWNLOADER_MIDDLEWARES = {"scrapy_selenium.SeleniumMiddleware": 800}
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'event_notify.pipelines.EventNotifyPipeline': 300,
-# }
+ITEM_PIPELINES = {
+    "event_notify.pipelines.ValidationPipeline": 300,
+    "event_notify.pipelines.RedisPipeline": 500,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

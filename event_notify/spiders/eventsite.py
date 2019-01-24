@@ -25,6 +25,13 @@ class EventsiteSpider(scrapy.Spider):
                 url=urljoin(self.root_url, url),
                 callback=self.parse_event,
             )
+        next_page = response.css(
+            'li.page > a[rel="next"]::attr("href")'
+        ).extract_first()
+        if next_page:
+            yield SeleniumRequest(
+                url=urljoin(self.root_url, next_page), callback=self.parse
+            )
 
     def parse_event(self, response):
         item = EventItem()

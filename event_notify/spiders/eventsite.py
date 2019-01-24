@@ -34,28 +34,29 @@ class EventsiteSpider(scrapy.Spider):
             )
 
     def parse_event(self, response):
-        item = EventItem()
-        item["url"] = response.url
-        item["id"] = response.url.split("/")[-2]
-        item["title"] = response.css(
-            "h1.c-eventSummary-title > span::text"
-        ).extract_first()
-        item["place"] = "/".join(response.css("span.left-address > a::text").extract())
-        item["schedule"] = (
-            "".join(response.css("span.c-eventSummary-datetime > spam::text").extract())
-            or ""
-        ) + response.css("span.c-eventSummary-datetime > span::text").extract_first()
-        item["plices"] = [
-            ":".join(
-                [
-                    (dl.css("dt > span::text").extract_first() or ""),
-                    (dl.css("dd > span > b::text").extract_first() or ""),
-                    (dl.css("dd > span::text").extract_first() or ""),
-                ]
+        yield EventItem(
+            url=response.url,
+            id=response.url.split("/")[-2],
+            title=response.css("h1.c-eventSummary-title > span::text").extract_first(),
+            place="/".join(response.css("span.left-address > a::text").extract()),
+            schedule=(
+                "".join(
+                    response.css("span.c-eventSummary-datetime > spam::text").extract()
+                )
+                or ""
             )
-            for dl in response.css(
-                "div.c-sectionUnit-body > div.c-eventSummary-stats > dl"
-            )
-            if ("u-icon-male" in dl.css("dt > span::attr(class)").extract_first())
-        ]
-        yield item
+            + response.css("span.c-eventSummary-datetime > span::text").extract_first(),
+            plices=[
+                ":".join(
+                    [
+                        (dl.css("dt > span::text").extract_first() or ""),
+                        (dl.css("dd > span > b::text").extract_first() or ""),
+                        (dl.css("dd > span::text").extract_first() or ""),
+                    ]
+                )
+                for dl in response.css(
+                    "div.c-sectionUnit-body > div.c-eventSummary-stats > dl"
+                )
+                if ("u-icon-male" in dl.css("dt > span::attr(class)").extract_first())
+            ],
+        )

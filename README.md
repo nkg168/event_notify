@@ -1,3 +1,6 @@
+# Introduction
+This is sample app for Web Scraping in Python using Scrapy
+
 # flow
 
 1. scrape web site
@@ -7,7 +10,25 @@
 ## setup
 
 if you use chromedriver and it's not installed
+
 `brew cask install chromedriver`
+
+Start redis-server
+
+`docker-compose -f "docker-compose.yml" up -d --build`
+
+Set environ variable in .env that pipenv loads
+
+```.env
+cp example.env .env
+vi .env
+```
+
+## run
+
+run Web Scraping
+
+`pipenv run scrapy crawl eventsite`
 
 ## Debugging
 
@@ -29,13 +50,4 @@ if using VSCode, update launch.json's configurations to include the "Scrapy" con
         }
     ]
 }
-```
-
-## environ variable
-
-pipenv load .env
-
-```.env
-cp example.env .env
-vi .env
 ```
